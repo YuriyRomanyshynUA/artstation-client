@@ -94,6 +94,13 @@ class ArtStation(BaseClient):
                     errors_count += 1
                     if errors_count > errors_limit:
                         raise r from None
+                    self.logger.warn(
+                        "Exception occured:\n"
+                        f"Errors count - {errors_count}\n"
+                        f"Errors limit - {errors_limit}\n"
+                        f"Error - \n{repr(r)}\n"
+                    )
+                    break
 
                 data = r.get("data", [])
 
@@ -162,6 +169,13 @@ class ArtStation(BaseClient):
                     errors_count += 1
                     if errors_count > errors_limit:
                         raise r from None
+                    self.logger.warn(
+                        "Exception occured:\n"
+                        f"Errors count - {errors_count}\n"
+                        f"Errors limit - {errors_limit}\n"
+                        f"Error - \n{repr(r)}\n"
+                    )
+                    break
 
                 data = r.get("data", [])
 

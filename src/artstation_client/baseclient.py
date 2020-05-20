@@ -11,6 +11,7 @@ __all__ = ["BaseClient"]
 
 useragent_generator = fake_useragent.UserAgent()
 logger = logging.getLogger('artstation-client')
+logger.setLevel(logging.WARNING)
 
 
 class BaseClient:
@@ -55,6 +56,10 @@ class BaseClient:
             trace_configs=trace_configs,
             **kwargs
         )
+
+    @property
+    def logger(self):
+        return logger
 
     async def do_request(self, method, url, **kwargs):
         return await (getattr(self.session, method)(url, **kwargs))
